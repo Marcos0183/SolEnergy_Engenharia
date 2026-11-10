@@ -2,7 +2,7 @@
 
 Projeto desenvolvido para a disciplina de Engenharia de Software do Bacharelado em Sistemas de Informação da Universidade Federal do Rio Grande do Norte (UFRN).
 
-O projeto tem como objetivo desenvolver um sistema secundário interligado ao sistema integrado da empresa Sol Energy Engenharia, visando centralizar e organizar as informações relacionadas aos clientes, serviços, agendamentos e pagamentos.
+O projeto tem como objetivo substituir a atual sistema de manipulação de dados da empresa Sol Energy Engenharia por um sistema mais preciso em de controle de dados, visando centralizar e organizar as informações relacionadas aos clientes, serviços, agendamentos e pagamentos.
 
 ## Problema
 
