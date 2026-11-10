@@ -11,19 +11,19 @@ Descrever de forma geral o projeto.
 
 Membro     |     Papel   |   E-mail   |
 ---------  | ----------- | ---------- |
-Taciano    | Cliente Professor  | taciano@bsi.ufrn.br
-Sandra     | Cliente (Diretora) | sandra@ceres.ufrn.br
-Zé         | Analista, Testador | ze@silva.com
-Maria      | Gerente, Desenvolvedor | maria@silva.com
+Marcos Vinícius Dantas da Silva    | Desenvolvedor  | marcos.silva.714@ufrn.edu.br
+Thiago Gomes de Oliveira    | Desenvolvedor, Produtor Criativo | thiago.oliveira.thiagobraga2a@gmail.com
+Thiago Alexandre Braga de Medeiro        | Desenvolvedor |  thiagobraga2a@gmail.com
+Vinícius Dantas de Souza  |  Desenvolvedor | maria@silva.com
 
 ### Matriz de Competências
 
 Membro     |     Competências   |
 ---------  | ----------- |
-Taciano    | Desenvolvedor Java, Junit, Eclipse, JSP, JSF, Hibernate, Matemática, Latex, etc |
-Sandra     | Gestão, Geográfa |
-Zé         | Desenvolvedor Java, Astrofísico |
-Maria      | Gestão, Desenvolvedor Java, Pesquisadora em Engenharia de Software |
+Marcos Vinícius Dantas da Silva     | Python, C, JavaScript, HTML, CSS, Dart, Octave, Assembly MIPS|
+Thiago Gomes de Oliveira    | Python, C,  Dart, JavaScript, HTML, CSS, Machine Learning|
+Thiago Alexandre Braga de Medeiro         | Python, Java, C, MySQL, JavaScript, HTML, CSS|
+Vinícius Dantas da Silva      | Gestão, Desenvolvedor Java, Pesquisadora em Engenharia de Software |
 
 ## Perfis dos Usuários
 
@@ -31,9 +31,9 @@ O sistema poderá ser utilizado por diversos usuários. Temos os seguintes perfi
 
 Perfil                                 | Descrição   |
 ---------                              | ----------- |
-Administrador | Este usuário realiza os cadastros base e pode realizar qualquer função.
-Docente | Este usuário pode verificar seu horário, e acessar turmas, estruturas curriculares, lista de alunos nas turmas, cadastrar enquetes e ver resultados, etc
-Discente | Este usuário pode verificar o plano de aulas (horários), demosntrar interesse em uma turma, e acessar turmas, a estrutura do curso, responder enquetes, etc.
+Assistente Administrativo | Responsável pelo cadastro de clientes, gerenciamento de serviços, agendamentos e geração de contas.
+Técnico | Responsável por registrar a conclusão dos serviços realizados.
+Cliente | Responsável pelo pagamento das contas geradas pelos serviços prestados.
 
 ## Lista de Requisitos Funcionais
 
