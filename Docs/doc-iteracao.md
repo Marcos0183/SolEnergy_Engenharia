@@ -1,11 +1,10 @@
 # Documento de Visão
 
-Documento construído a partido do **Modelo BSI - Doc 001 - Documento de Visão** que pode ser encontrado no
-link: https://docs.google.com/document/d/1DPBcyGHgflmz5RDsZQ2X8KVBPoEF5PdAz9BBNFyLa6A/edit?usp=sharing
+Documento construído a partir do **Modelo BSI - Doc 001 - Documento de Visão** e adaptado para o projeto de Sistema de Gerenciamento de Serviços de Energia Solar.
 
 ## Descrição do Projeto
 
-Descrever de forma geral o projeto.
+Desenvolver um sistema secundário interligado ao sistema integrado da empresa de Energia Solar Fotovoltaica, visando centralizar as informações relacionadas aos serviços, clientes e atendimentos. O sistema permitirá cadastrar clientes, controlar a quantidade de instalações e manutenções, armazenar os históricos e consultar informações de forma organizada e rápida. Além disso, será possível visualizar horários disponíveis, realizar e gerenciar agendamentos, e gerar contas a receber com opções de pagamento direto pelo cliente.
 
 ## Equipe e Definição de Papéis
 
@@ -27,7 +26,7 @@ Vinícius Dantas da Silva      | Gestão, Desenvolvedor Java, Pesquisadora em En
 
 ## Perfis dos Usuários
 
-O sistema poderá ser utilizado por diversos usuários. Temos os seguintes perfis/atores:
+O sistema poderá ser utilizado por diversos usuários. Temos os seguintes perfis/atores baseados nas necessidades da empresa:
 
 Perfil                                 | Descrição   |
 ---------                              | ----------- |
@@ -37,220 +36,150 @@ Cliente | Responsável pelo pagamento das contas geradas pelos serviços prestad
 
 ## Lista de Requisitos Funcionais
 
-### Entidade Centro - US01 - Manter Centro
-Um centro representa uma unidade administrativa da Universidade. Um centro tem código, nome, sigla, endereço e site.
+### Entidade Cliente - US01 - Manter Cliente
+O sistema deverá manter o registro e controle de todos os clientes da empresa de energia solar. Os dados cadastrados dos clientes incluem: nome, CPF, telefone, e-mail e endereço.
 
 Requisito                     | Descrição   | Ator |
 ---------                     | ----------- | ---------- |
-RF01.01 - Inserir Centro      | Insere novo centro informando: código, nome, sigla, endereço e site. | Administrador |
-RF01.02 - Listar Centros      | Listagem dos centros utilizando filtros nos atributos: código, nome, sigla, endereço e site. | Administrador, Docente, Discente |
-RF01.03 - Atualizar Centro    | Atualiza um centro informando: nome, sigla, endereço e site. | Administrador |
-RF01.04 - Deletar Centro      | Deleta um centro informando o código. | Administrador |
+RF01.01 - Inserir Cliente     | Insere novo cliente informando: nome, CPF, telefone, e-mail e endereço. | Assistente Administrativo |
+RF01.02 - Listar Clientes     | Consultar o perfil e os dados dos clientes utilizando o CPF como filtro principal. | Assistente Administrativo |
+RF01.03 - Atualizar Cliente   | Altera informações do cliente como nome, e-mail, telefone ou endereço. | Assistente Administrativo |
+RF01.04 - Deletar Cliente     | Exclui o perfil do cliente no sistema, bloqueado caso o cliente tenha agendamentos marcados ou pagamentos pendentes. | Assistente Administrativo |
 
 ---
 
-### Entidade Departamento - US02 - Manter Departamento
-Um departamento tem código, nome, sigla, endereço e o centro ao qual pertence.
+### Entidade Serviço - US02 - Manter Serviço
+O sistema deve gerenciar os tipos de serviços fornecidos, como instalação e manutenção de equipamentos. Cada serviço possui nome, tipo, descrição e valor.
 
 Requisito                     | Descrição   | Ator           |
 ---------                     | ----------- | ----------     |
-RF02.01 - Inserir Departamento | Insere novo departamento informando: código, nome, sigla, endereço e centro. | Administrador |
-RF02.02 - Listar Departamentos | Listagem de departamentos utilizando filtros nos atributos: código, nome, sigla, endereço e centro. | Administrador |
-RF02.03 - Atualizar Departamento | Atualiza um departamento informando: nome, sigla, endereço e centro. | Administrador |
-RF02.04 - Deletar Departamento | Deleta um departamento informando o código. | Administrador |
+RF02.01 - Inserir Serviço     | Cadastra novo serviço informando nome, tipo (instalação ou manutenção), descrição e valor, não permitindo duplicatas. | Assistente Administrativo |
+RF02.02 - Listar Serviços     | Pesquisa e exibe o catálogo de serviços, permitindo filtros por tipo de categoria. | Assistente Administrativo |
+RF02.03 - Atualizar Serviço   | Edita os dados de um serviço previamente cadastrado. | Assistente Administrativo |
+RF02.04 - Deletar Serviço     | Exclui ou inativa um serviço, bloqueando a ação caso existam agendamentos futuros vinculados a ele. | Assistente Administrativo |
 
 ---
 
-### Entidade Sala - US03 - Manter Sala
-Uma sala tem um número, um nome, capacidade, tamanho, bloco e o centro ao qual pertence.
+### Entidade Agendamento - US03 - Manter Agendamentos
+O sistema permite o gerenciamento da agenda de instalações e manutenções vinculadas aos clientes.
 
 Requisito                     | Descrição   | Ator           |
 ---------                     | ----------- | ----------     |
-RF03.01 - Inserir Sala         | Insere nova sala informando: número, nome, capacidade, tamanho, bloco e centro. | Administrador |
-RF03.02 - Listar Salas         | Listagem de salas utilizando filtros nos atributos: número, nome, capacidade, tamanho, bloco e centro. | Administrador |
-RF03.03 - Atualizar Sala       | Atualiza uma sala informando: nome, capacidade, tamanho, bloco e centro. | Administrador |
-RF03.04 - Deletar Sala         | Deleta uma sala informando o número. | Administrador |
+RF03.01 - Inserir Agendamento | Cria um agendamento vinculando um cliente cadastrado e o tipo de serviço solicitado. | Assistente Administrativo |
+RF03.02 - Listar Agendamentos | Consulta agendamentos registrados utilizando campos de filtro específicos. | Assistente Administrativo |
+RF03.03 - Atualizar Agendamento| Altera informações de um agendamento já registrado. | Assistente Administrativo |
+RF03.04 - Deletar Agendamento | Cancela um agendamento de serviço marcado. | Assistente Administrativo |
 
 ---
 
-### Entidade Componente Curricular - RF004 - Manter Componente Curricular
-Um componente curricular é de um tipo de componente. Ele tem: código, nome, ementa, departamento, carga horária, modalidade, equivalências, requisitos com outros componentes e data de criação.
+### Entidade Histórico - US04 - Serviços Realizados
+Trata da conclusão prática dos serviços no sistema e da extração de relatórios de atividades.
 
 Requisito                     | Descrição   | Ator           |
 ---------                     | ----------- | ----------     |
-RF04.01 - Inserir Componente   | Insere novo componente curricular informando: código, nome, ementa, departamento, carga horária, modalidade, equivalências, requisitos e data de criação. | Administrador |
-RF04.02 - Listar Componentes   | Listagem de componentes curriculares utilizando filtros nos atributos: código, nome, ementa, departamento, carga horária, modalidade e data de criação. | Administrador |
-RF04.03 - Atualizar Componente | Atualiza um componente curricular informando: nome, ementa, departamento, carga horária, modalidade, equivalências e requisitos. | Administrador |
-RF04.04 - Deletar Componente   | Deleta um componente curricular informando o código. | Administrador |
+RF04.01 - Registrar Conclusão | Permite que o técnico informe o encerramento de instalações ou manutenções realizadas. | Técnico |
+RF04.02 - Gerar Histórico     | Guarda e gera relatórios de serviços prestados, permitindo filtragem por data, cliente ou tipo de serviço, com exportação disponível. | Assistente Administrativo |
 
 ---
 
-### Entidade Horário de Aula - RF005 - Manter Horário de Aula
-Um horário tem: dia da semana, turno, ordem (identificador), hora de início e hora de final.
+### Entidade Conta e Pagamento - US05 - Financeiro
+Módulo para lidar com as cobranças e o pagamento integrado dos serviços.
 
 Requisito                     | Descrição   | Ator           |
 ---------                     | ----------- | ----------     |
-RF05.01 - Inserir Horário      | Insere novo horário informando: dia da semana, turno, ordem, hora de início e hora de final. | Administrador |
-RF05.02 - Listar Horários      | Listagem de horários utilizando filtros nos atributos: dia da semana, turno, ordem, hora de início e hora de final. | Administrador |
-RF05.03 - Atualizar Horário    | Atualiza um horário informando: dia da semana, turno, ordem, hora de início e hora de final. | Administrador |
-RF05.04 - Deletar Horário      | Deleta um horário informando a ordem. | Administrador |
-
----
-
-### Entidade Professor - RF006 - Manter Professor
-Um professor tem: matrícula, nome, e-mail, telefone e o departamento.
-
-Requisito                     | Descrição   | Ator           |
----------                     | ----------- | ----------     |
-RF06.01 - Inserir Professor    | Insere novo professor informando: matrícula, nome, e-mail, telefone e departamento. | Administrador |
-RF06.02 - Listar Professores   | Listagem de professores utilizando filtros nos atributos: matrícula, nome, e-mail, telefone e departamento. | Administrador |
-RF06.03 - Atualizar Professor  | Atualiza um professor informando: nome, e-mail, telefone e departamento. | Administrador |
-RF06.04 - Deletar Professor    | Deleta um professor informando a matrícula. | Administrador |
-
----
-
-### Entidade Turma - RF007 - Manter Turma
-Uma turma tem: código, professores, salas e horários. É de um componente curricular e pode ter mais de um professor, uma ou mais salas e vários horários de aulas.
-
-Requisito                     | Descrição   | Ator                      |
----------                     | ----------- | ----------                |
-RF07.01 - Inserir Turma        | Insere nova turma informando: código, componente curricular, professores, salas e horários. | Chefes, Coordenadores |
-RF07.02 - Listar Turmas         | Listagem de turmas utilizando filtros nos atributos: código, componente curricular, professores, salas e horários. | Chefes, Coordenadores |
-RF07.03 - Atualizar Turma      | Atualiza uma turma informando: professores, salas e horários. | Chefes, Coordenadores |
-RF07.04 - Deletar Turma        | Deleta uma turma informando o código. | Chefes, Coordenadores |
-
----
-
-### Entidade Usuário - US08 - Manter Usuário
-Um usuário tem: nome, e-mail, senha e pode pertencer a um ou mais grupos.
-
-Requisito                     | Descrição   | Ator           |
----------                     | ----------- | ----------     |
-RF08.01 - Inserir Usuário      | Insere novo usuário informando: nome, e-mail, senha e grupos. | Administrador |
-RF08.02 - Listar Usuários      | Listagem de usuários utilizando filtros nos atributos: nome, e-mail e grupos. | Administrador |
-RF08.03 - Atualizar Usuário    | Atualiza um usuário informando: nome, e-mail, senha e grupos. | Administrador |
-RF08.04 - Deletar Usuário      | Deleta um usuário informando o e-mail. | Administrador |
-RF08.05 - Login do Usuário     | Realiza login informando e-mail e senha. | Usuário |
-RF08.06 - Logout do Usuário    | Realiza logout encerrando a sessão do usuário. | Usuário |
-
----
-
-### Entidade Grupo - US09 - Manter Grupo
-Um grupo define permissões atribuídas a um conjunto de usuários. Ele tem: nome e permissões.
-
-Requisito                     | Descrição   | Ator           |
----------                     | ----------- | ----------     |
-RF09.01 - Inserir Grupo        | Insere novo grupo informando: nome e permissões. | Administrador |
-RF09.02 - Listar Grupos        | Listagem de grupos utilizando filtros nos atributos: nome e permissões. | Administrador |
-RF09.03 - Atualizar Grupo      | Atualiza um grupo informando: nome e permissões. | Administrador |
-RF09.04 - Deletar Grupo        | Deleta um grupo informando o nome. | Administrador |
+RF05.01 - Gerar Conta a Receber| Gera automaticamente uma conta a receber vinculada ao cliente logo após o registro de conclusão do serviço. | Técnico (Via Sistema) |
+RF05.02 - Pagar Conta         | Permite que o cliente consulte suas contas pendentes e realize o pagamento (PIX, Cartão ou Boleto), atualizando o status e emitindo comprovante. | Cliente |
 
 ---
 
 ### Modelo Conceitual
 
-Abaixo apresentamos o modelo conceitual usando o **Mermaid**.
+Abaixo apresentamos o modelo conceitual usando o **Mermaid**, extraído diretamente da arquitetura de classes e dados do sistema de energia solar.
 
 ```mermaid
 erDiagram
-    CENTRO {
-        string codigo PK
+    CLIENTE {
+        int idCliente PK
         string nome
-        string sigla
-        string endereco
-        string site
-    }
-
-
-    DEPARTAMENTO {
-        string codigo PK
-        string nome
-        string sigla
-        string endereco
-    }
-    DEPARTAMENTO ||--o{ CENTRO : "pertence a"
-
-    SALA {
-        string numero PK
-        string nome
-        int capacidade
-        float tamanho
-        string bloco
-    }
-    SALA ||--o{ CENTRO : "pertence a"
-
-    COMPONENTE {
-        string codigo PK
-        string nome
-        text ementa
-        int cargaHoraria
-        string modalidade
-        date dataCriacao
-    }
-    COMPONENTE ||--o{ DEPARTAMENTO : "é de"
-    COMPONENTE }o--o{ COMPONENTE : "tem equivalências/requisitos"
-
-    HORARIO {
-        int id PK
-        string diaSemana
-        string turno
-        int ordem
-        time horaInicio
-        time horaFim
-    }
-
-    PROFESSOR {
-        string matricula PK
-        string nome
+        string cpf
+        string end
         string email
-        string telefone
+        string tel
     }
-    PROFESSOR ||--o{ DEPARTAMENTO : "pertence a"
 
-    TURMA {
-        string codigo PK
+    CONTA {
+        int idConta PK
+        double valorTotal
+        date dataEmissao
+        date dataVencimento
+        string status
+        string descricao
     }
-    TURMA ||--o{ COMPONENTE : "é de"
-    TURMA ||--o{ PROFESSOR : "é ministrada por"
-    TURMA ||--o{ SALA : "é realizada em"
-    TURMA ||--o{ HORARIO : "tem"
+    CLIENTE ||--o{ CONTA : "possui"
 
-    USUARIO {
-        string email PK
+    PAGAMENTO {
+        int idPagamento PK
+        string formaPagamento
+        double valorPago
+        date dataPagamento
+        string status
+    }
+    CONTA ||--o| PAGAMENTO : "quitada por"
+
+    FUNCIONARIO {
+        int id PK
         string nome
+        string cpf
+        string login
         string senha
+        string funcao
     }
-    USUARIO }o--o{ GRUPO : "pertence a"
 
-    GRUPO {
-        string nome PK
+    AGENDAMENTO {
+        int idAgendamento PK
+        date dataInicio
+        date dataFim
+        string status
     }
-    GRUPO ||--o{ PERMISSAO : "tem"
+    CLIENTE ||--o{ AGENDAMENTO : "solicita"
+    FUNCIONARIO ||--o{ AGENDAMENTO : "gerencia"
 
-    PERMISSAO {
-        string nome PK
+    AGENDAMENTO_SERVICO {
+        int idAgendamentoServico PK
+        int quantidade
+        date dataRegistro
+        string descricaoExecucao
+        string status
     }
+    AGENDAMENTO ||--o{ AGENDAMENTO_SERVICO : "contém"
+    FUNCIONARIO ||--o{ AGENDAMENTO_SERVICO : "executa"
+
+    SERVICO {
+        int idServico PK
+        string tipo
+        string descricao
+        double valor
+    }
+    SERVICO ||--o{ AGENDAMENTO_SERVICO : "especificado em"
 ```
 
 #### Descrição das Entidades
+*   **Cliente**: Armazena os dados pessoais e de contato para vinculação a serviços e cobranças.
+*   **Serviço**: Catálogo central de serviços da empresa, contendo tipo, descrição e valor base.
+*   **Agendamento**: Registro de marcações de datas de início e fim para atendimentos aos clientes.
+*   **AgendamentoServico**: Tabela associativa que detalha a execução e quantidade de um serviço específico dentro de um agendamento.
+*   **Conta**: Registro de cobrança gerado automaticamente após a conclusão de serviços.
+*   **Pagamento**: Dados e status das transações financeiras (PIX, Cartão, Boleto) quitando as contas.
+*   **Funcionário**: Representa Assistentes Administrativos e Técnicos que operam o sistema.
 
 ## Lista de Requisitos Não-Funcionais
 
 Requisito                                 | Descrição   |
 ---------                                 | ----------- |
-RNF001 - Deve ser acessível via navegador | Deve abrir perfeitamento no Firefox e no Chrome. |
-RNF002 - Consultas deve ser eficiente | O sistema deve executar as consultas em milessegundos |
-RNF003 - Log e histórico de acesso e funções | Deve manter um log de todos os acessos e das funções executadas pelo usuário |
-
-## Riscos
-
-Tabela com o mapeamento dos riscos do projeto, as possíveis soluções e os responsáveis.
-
-Data | Risco | Prioridade | Responsável | Status | Providência/Solução |
------- | ------ | ------ | ------ | ------ | ------ |
-10/03/2018 | Não aprendizado das ferramentas utilizadas pelos componentes do grupo | Alta | Todos | Vigente | Reforçar estudos sobre as ferramentas e aulas com a integrante que conhece a ferramenta |
-10/03/2018 | Ausência por qualquer motivo do cliente | Média | Gerente | Vigente | Planejar o cronograma tendo em base a agenda do cliente |
-10/03/2018 | Divisão de tarefas mal sucedida | Baixa | Gerente | Vigente | Acompanhar de perto o desenvolvimento de cada membro da equipe |
-10/03/2018 | Implementação de protótipo com as tecnologias | Alto | Todos | Resolvido | Encontrar tutorial com a maioria da tecnologia e implementar um caso base do sistema |
-
-### Referências
+RNF01 - Estrutura de hardware             | O sistema deverá funcionar em computadores desktop ou notebooks com acesso à internet. |
+RNF02 - Segurança                         | O acesso ao sistema e suas funções deverá ocorrer exclusivamente através de login e senha. |
+RNF03 - Tempo de resposta                 | As consultas realizadas pelo sistema deverão ser exibidas em no máximo 5 segundos. |
+RNF04 - Compatibilidade                   | O sistema deverá ser compatível com os navegadores baseados em Chromium e Mozilla Firefox. |
+RNF05 - Padronização                      | As telas do sistema deverão possuir o mesmo padrão de menus, botões e navegação. |
+RNF06 - Acessibilidade                    | O sistema deverá ser acessível, apresentando ferramentas de zoom, alteração de cores e redução de animações. |
+RNF07 - Segurança de Pagamento            | Toda a transação financeira realizada deve ser criptografada por meio de SSL/TLS e operacional 24h por dia. |
