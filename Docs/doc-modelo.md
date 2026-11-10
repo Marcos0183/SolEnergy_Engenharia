@@ -1,81 +1,289 @@
 # Documento de Modelos
 
-Neste documento temos o modelo Conceitual (UML) ou de Dados (Entidade-Relacionamento). Temos também a descrição das entidades e o dicionário de dados.
+Este documento apresenta os modelos conceitual e de dados do sistema da Sol Energy Engenharia. São apresentados o diagrama de classes UML, a descrição das entidades, o diagrama Entidade-Relacionamento (ER) e o dicionário de dados.
 
-Para a modelagem pode se usar o Astah UML ou o BrModelo. Uma ferramenta interessante para modelos UML é a [YUML](http://yuml.me), no link temos um exemplo de [Modelo UML com YUML](yuml/monitoria-yuml.md). Atualmente é possível usar a ferramenta **Mermaid** segundo o blog do GitHub [Include diagrams in your Markdown files with Mermaid](https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/). A documentação do **Mermaid** pode ser encontrada em [Mermaid in GitHub](https://mermaid-js.github.io/mermaid).
+## 1. Modelo Conceitual
 
-## Modelo Conceitual
+### 1.1. Diagrama de Classes usando Mermaid
 
-### Diagrama de Classes usando Mermaid
+O diagrama de classes representa as principais entidades do sistema, seus atributos, métodos e relacionamentos.
 
 ```mermaid
 classDiagram
-      Animal <|-- Duck
-      Animal <|-- Fish
-      Animal <|-- Zebra
-      Animal : +int age
-      Animal : +String gender
-      Animal: +isMammal()
-      Animal: +mate()
-      class Duck{
-          +String beakColor
-          +swim()
-          +quack()
-      }
-      class Fish{
-          -int sizeInFeet
-          -canEat()
-      }
-      class Zebra{
-          +bool is_wild
-          +run()
-      }
+    class Cliente {
+        -int idCliente
+        -String nome
+        -String cpf
+        -String endereco
+        -String email
+        -String telefone
+        +cadastrarCliente(Cliente cliente) void
+        +excluirCliente(int cpf) void
+        +consultarCliente(String cpf) Cliente
+        +alterarCliente(Cliente cliente) void
+        +verificarCpf(String cpf) boolean
+    }
+
+    class Funcionario {
+        -int id
+        -String nome
+        -String cpf
+        -String login
+        -String senha
+        -String funcao
+        +autenticar(String login, String senha) boolean
+    }
+
+    class Servico {
+        -int idServico
+        -String tipo
+        -String descricao
+        -double valor
+        +cadastrarServico(Servico servico) void
+        +pesquisarServico(int idServico) Servico
+        +alterarServico(int idServico) void
+        +excluirServico(int idServico) void
+    }
+
+    class Agendamento {
+        -int idAgendamento
+        -Date dataInicio
+        -Date dataFim
+        -String status
+        +cadastrarAgendamento(Agendamento agendamento) void
+        +consultarAgendamento(int idAgendamento) Agendamento
+        +localizarAgendamento(Agendamento agendamento) Agendamento
+        +alterarAgendamento(int idAgendamento) void
+        +excluirAgendamento(int idAgendamento) void
+        +verificarCampos() boolean
+        +verificarAgendamento(int idAgendamento) boolean
+    }
+
+    class AgendamentoServico {
+        -int idAgendamentoServico
+        -int quantidade
+        -Date dataRegistro
+        -String descricaoExecucao
+        -String status
+        +atualizarQuantidade(int novaQuantidade) void
+        +listarServicos() List~AgendamentoServico~
+        +registrarConclusao() void
+        +gerarHistorico() void
+        +exportarHistorico() void
+    }
+
+    class Conta {
+        -int idConta
+        -double valorTotal
+        -Date dataEmissao
+        -Date dataVencimento
+        -String status
+        -String descricao
+        +gerarConta() void
+        +atualizarStatus(String status) void
+        +verificarVencimento(Conta conta) void
+        +consultarConta(int idConta) Conta
+        +pagarConta() void
+        +listarContas() List~Conta~
+    }
+
+    class Pagamento {
+        -int idPagamento
+        -String formaPagamento
+        -double valorPago
+        -Date dataPagamento
+        -String status
+        +registrarPagamento(Pagamento pagamento) void
+        +emitirRecibo() void
+        +validarPagamento() boolean
+    }
+
+    Cliente "1" --> "*" Conta : possui
+    Cliente "1" --> "*" Agendamento : solicita
+    Funcionario "1" --> "*" Agendamento : gerencia
+    Funcionario "1" --> "*" AgendamentoServico : registra
+    Funcionario "1" --> "*" Conta : gera
+    Agendamento "1" *-- "*" AgendamentoServico : possui
+    AgendamentoServico "*" --> "1" Servico : referencia
+    Conta "1" --> "1" Pagamento : possui
 ```
 
-### Descrição das Entidades
+### 1.2. Descrição das Entidades
 
-Descrição sucinta das entidades presentes no sistema.
+A tabela abaixo apresenta uma descrição das entidades presentes no sistema.
 
-| Entidade | Descrição   |
-|----------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Animal   | Entidade abstrata para representar informações gerais dos Animais: age, gender, isMammal(), mate().                                                  |
-| Duck     | Entidade que representa um Pato tem as informações: String beakColor, +swim(), +quack(). A classe Duck estende a classe abstrata Animal. |
-| Fish     | Entidade que representa um Peixe tem as informações: sizeInFeet, -canEat(). A classe Peixe estende a classe abstrata Animal.                                                                   |
-| Zebra    | Entidade que representa um Zebra tem as informações is_wild, run(). A classe Zebra estende a classe abstrata Animal.                                                                   |
+| Entidade | Descrição |
+|---|---|
+| Cliente | Representa os clientes da empresa, armazenando informações pessoais e de contato, como nome, CPF, endereço, e-mail e telefone. |
+| Funcionário | Representa os funcionários da empresa, contendo informações de identificação, login, senha e função. É responsável pelo acesso ao sistema e pelo gerenciamento dos serviços. |
+| Serviço | Representa os serviços oferecidos pela empresa, como instalações e manutenções de equipamentos fotovoltaicos, armazenando tipo, descrição e valor. |
+| Agendamento | Representa os agendamentos realizados pelos clientes, armazenando as datas de início e término e o status do atendimento. |
+| AgendamentoServico | Representa os serviços associados a um agendamento, armazenando quantidade, data de registro, descrição da execução e status. Também permite registrar conclusões e gerar históricos. |
+| Conta | Representa as contas geradas pelos serviços prestados, armazenando valor total, datas de emissão e vencimento, status e descrição. |
+| Pagamento | Representa os pagamentos realizados pelos clientes, armazenando forma de pagamento, valor pago, data e status da transação. |
 
-## Modelo de Dados (Entidade-Relacionamento)
+## 2. Modelo de Dados (Entidade-Relacionamento)
 
-Para criar modelos ER é possível usar o BrModelo e gerar uma imagem. Contudo, atualmente é possível criar modelos ER usando a ferramenta **Mermaid**, escrevendo o modelo diretamente em markdown. Acesse a documentação para escrever modelos [ER Diagram Mermaid](https://mermaid-js.github.io/mermaid/#/entityRelationshipDiagram).
+O modelo Entidade-Relacionamento representa a estrutura dos dados utilizados pelo sistema, identificando as entidades, seus atributos e os relacionamentos existentes entre elas.
+
+### 2.1. Diagrama Entidade-Relacionamento usando Mermaid
 
 ```mermaid
 erDiagram
-    Departamento ||--o{ Laboratorio : labs
-    Departamento ||--|{ Docente : docentes
-    Docente ||--o| Laboratorio : coordenador
-    Docente ||--o| Laboratorio : vice-coordenador
-    Laboratorio ||--o{ Membro_Docente : membros
-    Docente ||--|{ Membro_Docente : ""
-    Laboratorio ||--o{ Membro_Discente : membros
-    Membro_Discente }|--|| Discente: ""
+    CLIENTE ||--o{ CONTA : possui
+    CLIENTE ||--o{ AGENDAMENTO : solicita
+    FUNCIONARIO ||--o{ AGENDAMENTO : gerencia
+    FUNCIONARIO ||--o{ AGENDAMENTO_SERVICO : registra
+    FUNCIONARIO ||--o{ CONTA : gera
+    AGENDAMENTO ||--|{ AGENDAMENTO_SERVICO : possui
+    SERVICO ||--o{ AGENDAMENTO_SERVICO : referencia
+    CONTA ||--|| PAGAMENTO : possui
+
+    CLIENTE {
+        int idCliente PK
+        string nome
+        string cpf UK
+        string endereco
+        string email
+        string telefone
+    }
+
+    FUNCIONARIO {
+        int id PK
+        string nome
+        string cpf
+        string login
+        string senha
+        string funcao
+    }
+
+    SERVICO {
+        int idServico PK
+        string tipo
+        string descricao
+        decimal valor
+    }
+
+    AGENDAMENTO {
+        int idAgendamento PK
+        int idCliente FK
+        int idFuncionario FK
+        date dataInicio
+        date dataFim
+        string status
+    }
+
+    AGENDAMENTO_SERVICO {
+        int idAgendamentoServico PK
+        int idAgendamento FK
+        int idServico FK
+        int idFuncionario FK
+        int quantidade
+        date dataRegistro
+        string descricaoExecucao
+        string status
+    }
+
+    CONTA {
+        int idConta PK
+        int idCliente FK
+        int idFuncionario FK
+        decimal valorTotal
+        date dataEmissao
+        date dataVencimento
+        string status
+        string descricao
+    }
+
+    PAGAMENTO {
+        int idPagamento PK
+        int idConta FK
+        string formaPagamento
+        decimal valorPago
+        date dataPagamento
+        string status
+    }
 ```
 
-### Dicionário de Dados
+### 2.2. Dicionário de Dados
 
-|   Tabela   | Laboratório |
-| ---------- | ----------- |
-| Descrição  | Armazena as informações de um laboratório acadêmico. |
-| Observação | Laboratórios acadêmicos podem ser de Ensino, Pesquisa, Extensão, P&D, etc. |
+O dicionário de dados apresenta a descrição dos atributos de cada entidade, seus respectivos tipos de dados e as restrições de domínio.
 
-|  Nome         | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
-| ------------- | -------------------------------- | ------------ | ------- | --------------------- |
-| codigo        | identificador gerado pelo SGBD   | SERIAL       | ---     | PK / Identity |
-| sigla         | representação em sigla do lab    | VARCHAR      | 15      | Unique / Not Null |
-| nome          | nome do laboratório              | VARCHAR      | 150     | Not Null |
-| descricao     | detalhes sobre o laboratório     | VARCHAR      | 250     | --- |
-| endereco      | endereço e localização do lab    | VARCHAR      | 150     | --- |
-| data_criacao  | data de criação do lab           | DATE         | ---     | Not Null |
-| portaria      | portaria de criação do lab       | VARCHAR      | 50      | --- |
-| link_portaria | URL para a portaria (PDF)        | VARCHAR      | 150     | --- |
-| site          | URL para o site do laboratório   | VARCHAR      | 150     | --- |
-| e-mail        | e-mail de contato do laboratório | VARCHAR      | 150     | --- |
-| departamento  | departamento vinculado ao lab    | SERIAL       | ---     | FK / Not Null |
+#### Tabela: Cliente
+
+| Nome | Descrição | Tipo de Dado | Tamanho | Restrições de Domínio |
+|---|---|---|---|---|
+| idCliente | Identificador do cliente | INT | --- | PK / Identity |
+| nome | Nome completo do cliente | VARCHAR | 150 | NOT NULL |
+| cpf | CPF do cliente | VARCHAR | 11 | UNIQUE / NOT NULL |
+| endereco | Endereço do cliente | VARCHAR | 200 | NOT NULL |
+| email | E-mail do cliente | VARCHAR | 150 | NOT NULL |
+| telefone | Telefone do cliente | VARCHAR | 20 | NOT NULL |
+
+#### Tabela: Funcionario
+
+| Nome | Descrição | Tipo de Dado | Tamanho | Restrições de Domínio |
+|---|---|---|---|---|
+| id | Identificador do funcionário | INT | --- | PK / Identity |
+| nome | Nome completo do funcionário | VARCHAR | 150 | NOT NULL |
+| cpf | CPF do funcionário | VARCHAR | 11 | UNIQUE / NOT NULL |
+| login | Login de acesso ao sistema | VARCHAR | 50 | UNIQUE / NOT NULL |
+| senha | Senha de acesso ao sistema | VARCHAR | 255 | NOT NULL |
+| funcao | Função desempenhada pelo funcionário | VARCHAR | 50 | NOT NULL |
+
+#### Tabela: Servico
+
+| Nome | Descrição | Tipo de Dado | Tamanho | Restrições de Domínio |
+|---|---|---|---|---|
+| idServico | Identificador do serviço | INT | --- | PK / Identity |
+| tipo | Tipo do serviço (instalação ou manutenção) | VARCHAR | 50 | NOT NULL |
+| descricao | Descrição do serviço oferecido | VARCHAR | 250 | NOT NULL |
+| valor | Valor cobrado pelo serviço | DECIMAL | 10,2 | NOT NULL |
+
+#### Tabela: Agendamento
+
+| Nome | Descrição | Tipo de Dado | Tamanho | Restrições de Domínio |
+|---|---|---|---|---|
+| idAgendamento | Identificador do agendamento | INT | --- | PK / Identity |
+| idCliente | Cliente responsável pelo agendamento | INT | --- | FK / NOT NULL |
+| idFuncionario | Funcionário responsável pelo agendamento | INT | --- | FK / NOT NULL |
+| dataInicio | Data de início do agendamento | DATE | --- | NOT NULL |
+| dataFim | Data de término do agendamento | DATE | --- | NOT NULL |
+| status | Situação atual do agendamento | VARCHAR | 30 | NOT NULL |
+
+#### Tabela: AgendamentoServico
+
+| Nome | Descrição | Tipo de Dado | Tamanho | Restrições de Domínio |
+|---|---|---|---|---|
+| idAgendamentoServico | Identificador do serviço associado ao agendamento | INT | --- | PK / Identity |
+| idAgendamento | Agendamento ao qual o serviço pertence | INT | --- | FK / NOT NULL |
+| idServico | Serviço associado ao agendamento | INT | --- | FK / NOT NULL |
+| idFuncionario | Funcionário responsável pela execução | INT | --- | FK / NOT NULL |
+| quantidade | Quantidade de serviços realizados | INT | --- | NOT NULL |
+| dataRegistro | Data de registro do serviço | DATE | --- | NOT NULL |
+| descricaoExecucao | Descrição da execução do serviço | VARCHAR | 500 | --- |
+| status | Situação atual do serviço | VARCHAR | 30 | NOT NULL |
+
+#### Tabela: Conta
+
+| Nome | Descrição | Tipo de Dado | Tamanho | Restrições de Domínio |
+|---|---|---|---|---|
+| idConta | Identificador da conta | INT | --- | PK / Identity |
+| idCliente | Cliente responsável pela conta | INT | --- | FK / NOT NULL |
+| idFuncionario | Funcionário responsável pela geração da conta | INT | --- | FK / NOT NULL |
+| valorTotal | Valor total da conta | DECIMAL | 10,2 | NOT NULL |
+| dataEmissao | Data de emissão da conta | DATE | --- | NOT NULL |
+| dataVencimento | Data de vencimento da conta | DATE | --- | NOT NULL |
+| status | Situação da conta (pendente ou pago) | VARCHAR | 30 | NOT NULL |
+| descricao | Descrição referente à conta | VARCHAR | 250 | --- |
+
+#### Tabela: Pagamento
+
+| Nome | Descrição | Tipo de Dado | Tamanho | Restrições de Domínio |
+|---|---|---|---|---|
+| idPagamento | Identificador do pagamento | INT | --- | PK / Identity |
+| idConta | Conta referente ao pagamento | INT | --- | FK / UNIQUE / NOT NULL |
+| formaPagamento | Forma utilizada para pagamento (PIX, cartão ou boleto) | VARCHAR | 30 | NOT NULL |
+| valorPago | Valor efetivamente pago | DECIMAL | 10,2 | NOT NULL |
+| dataPagamento | Data em que o pagamento foi realizado | DATE | --- | NOT NULL |
+| status | Situação atual do pagamento | VARCHAR | 30 | NOT NULL |

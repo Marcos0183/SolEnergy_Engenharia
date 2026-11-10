@@ -13,7 +13,7 @@ Membro     |     Papel   |   E-mail   |
 Marcos Vinícius Dantas da Silva    | Desenvolvedor  | marcos.silva.714@ufrn.edu.br
 Thiago Gomes de Oliveira    | Desenvolvedor, Produtor Criativo | thiago.oliveira.thiagobraga2a@gmail.com
 Thiago Alexandre Braga de Medeiro        | Desenvolvedor |  thiagobraga2a@gmail.com
-Vinícius Dantas de Souza  |  Desenvolvedor | maria@silva.com
+Vinícius Linhares Queiroz  |  Desenvolvedor | 
 
 ### Matriz de Competências
 
@@ -22,7 +22,7 @@ Membro     |     Competências   |
 Marcos Vinícius Dantas da Silva     | Python, C, JavaScript, HTML, CSS, Dart, Octave, Assembly MIPS|
 Thiago Gomes de Oliveira    | Python, C,  Dart, JavaScript, HTML, CSS, Machine Learning|
 Thiago Alexandre Braga de Medeiro         | Python, Java, C, MySQL, JavaScript, HTML, CSS|
-Vinícius Dantas da Silva      | Gestão, Desenvolvedor Java, Pesquisadora em Engenharia de Software |
+Vinícius Dantas da Silva      | JavaScript, C, Dart, Python |
 
 ## Perfis dos Usuários
 
