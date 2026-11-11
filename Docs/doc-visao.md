@@ -13,13 +13,13 @@ Membro     |     Papel   |   E-mail   |
 Marcos Vinícius Dantas da Silva    | Desenvolvedor  | marcos.silva.714@ufrn.edu.br
 Thiago Gomes de Oliveira    | Desenvolvedor, Produtor Criativo | thiago.oliveira.thiagobraga2a@gmail.com
 Thiago Alexandre Braga de Medeiro        | Desenvolvedor |  thiagobraga2a@gmail.com
-Vinícius Linhares Queiroz  |  Desenvolvedor | 
+Vinícius Linhares Queiroz  |  Desenvolvedor |  vinicius.linhares.702@ufrn.edu.br
 
 ### Matriz de Competências
 
 Membro     |     Competências   |
 ---------  | ----------- |
-Marcos Vinícius Dantas da Silva     | Python, C, JavaScript, HTML, CSS, Dart, Octave, Assembly MIPS|
+Marcos Vinícius Dantas da Silva     | Python, C, JavaScript, HTML, CSS, Dart, Octave|
 Thiago Gomes de Oliveira    | Python, C,  Dart, JavaScript, HTML, CSS, Machine Learning|
 Thiago Alexandre Braga de Medeiro         | Python, Java, C, MySQL, JavaScript, HTML, CSS|
 Vinícius Dantas da Silva      | JavaScript, C, Dart, Python |
@@ -44,7 +44,7 @@ Requisito                     | Descrição   | Ator |
 RF01.01 - Inserir Cliente     | Insere novo cliente informando: nome, CPF, telefone, e-mail e endereço. | Assistente Administrativo |
 RF01.02 - Listar Clientes     | Consultar o perfil e os dados dos clientes utilizando o CPF como filtro principal. | Assistente Administrativo |
 RF01.03 - Atualizar Cliente   | Altera informações do cliente como nome, e-mail, telefone ou endereço. | Assistente Administrativo |
-RF01.04 - Deletar Cliente     | Exclui o perfil do cliente no sistema, bloqueado caso o cliente tenha agendamentos marcados ou pagamentos pendentes. | Assistente Administrativo |
+RF01.04 - Deletar Cliente     | Exclui o perfil do cliente(forma lógica) no sistema, bloqueado caso o cliente tenha agendamentos marcados ou pagamentos pendentes. | Assistente Administrativo |
 
 ---
 
