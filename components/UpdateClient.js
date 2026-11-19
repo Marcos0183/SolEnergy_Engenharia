@@ -52,7 +52,8 @@ export default function UpdateClient({ clientes, onAtualizarCliente }) {
     }
 
     const clienteEncontrado = clientes.find(
-      (cliente) => cliente.cpf.replace(/\D/g, "") === cpfNumeros
+      (cliente) =>
+        cliente.cpf.replace(/\D/g, "") === cpfNumeros && cliente.ativo !== false
     );
 
     if (!clienteEncontrado) {
@@ -188,7 +189,7 @@ export default function UpdateClient({ clientes, onAtualizarCliente }) {
           </button>
         </form>
 
-        {clientes.length === 0 && (
+        {clientes.filter((c) => c.ativo !== false).length === 0 && (
           <div className="empty-state update-empty-state">
             Ainda não há clientes cadastrados para atualizar.
           </div>

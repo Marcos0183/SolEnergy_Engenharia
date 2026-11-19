@@ -6,19 +6,33 @@ import Sidebar from "../components/Sidebar";
 import ClientForm from "../components/ClientForm";
 import ClientList from "../components/ClientList";
 import UpdateClient from "../components/UpdateClient";
+import DeleteClient from "../components/DeleteClient";
 
 export default function HomePage() {
   const [clientes, setClientes] = useState([]);
   const [paginaAtiva, setPaginaAtiva] = useState("clientes");
 
   function adicionarCliente(novoCliente) {
-    setClientes((clientesAtuais) => [...clientesAtuais, novoCliente]);
+    // Novos clientes nascem com ativo: true
+    setClientes((clientesAtuais) => [
+      ...clientesAtuais,
+      { ...novoCliente, ativo: true },
+    ]);
   }
 
   function atualizarCliente(clienteAtualizado) {
     setClientes((clientesAtuais) =>
       clientesAtuais.map((cliente) =>
         cliente.id === clienteAtualizado.id ? clienteAtualizado : cliente
+      )
+    );
+  }
+
+  // Exclusão lógica: marca o cliente como inativo (ativo: false)
+  function excluirCliente(idCliente) {
+    setClientes((clientesAtuais) =>
+      clientesAtuais.map((cliente) =>
+        cliente.id === idCliente ? { ...cliente, ativo: false } : cliente
       )
     );
   }
@@ -49,7 +63,7 @@ export default function HomePage() {
 
               <ClientList clientes={clientes} />
             </>
-          ) : (
+          ) : paginaAtiva === "atualizar" ? (
             <>
               <div className="page-header">
                 <h2 className="page-title">Atualização de Clientes</h2>
@@ -62,6 +76,22 @@ export default function HomePage() {
               <UpdateClient
                 clientes={clientes}
                 onAtualizarCliente={atualizarCliente}
+              />
+            </>
+          ) : (
+            <>
+              <div className="page-header">
+                <h2 className="page-title">Inativação de Clientes</h2>
+                <p className="page-description">
+                  Localize um cliente pelo CPF e inative o cadastro. O registro
+                  é preservado no sistema (exclusão lógica) e não aparece na
+                  listagem ativa.
+                </p>
+              </div>
+
+              <DeleteClient
+                clientes={clientes}
+                onExcluirCliente={excluirCliente}
               />
             </>
           )}

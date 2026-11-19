@@ -77,10 +77,12 @@ export default function ClientForm({ clientes, onAdicionarCliente }) {
       return;
     }
 
-    // 4. Verificar se já existe um cliente cadastrado com o mesmo CPF
+    // 4. Verificar se já existe um cliente ATIVO cadastrado com o mesmo CPF
     const cpfApenasNumeros = cpfLimpo.replace(/\D/g, "");
     const cpfJaCadastrado = clientes.some(
-      (cliente) => cliente.cpf.replace(/\D/g, "") === cpfApenasNumeros
+      (cliente) =>
+        cliente.cpf.replace(/\D/g, "") === cpfApenasNumeros &&
+        cliente.ativo !== false
     );
 
     if (cpfJaCadastrado) {

@@ -2,6 +2,7 @@ export default function Sidebar({ paginaAtiva, onNavigate }) {
   const itens = [
     { id: "clientes", icone: "👥", titulo: "Clientes" },
     { id: "atualizar", icone: "✏️", titulo: "Atualizar dados" },
+    { id: "excluir", icone: "🗑️", titulo: "Inativar cliente" },
   ];
 
   return (

@@ -28,9 +28,12 @@ export default function ClientList({ clientes }) {
     setFiltroCpf("");
   }
 
+  // Exibe apenas clientes ativos (exclusão lógica)
+  const clientesAtivos = clientes.filter((cliente) => cliente.ativo !== false);
+
   // Filtra os clientes pelo CPF (comparando apenas os números para facilitar a busca)
   const cpfBuscaNumeros = filtroCpf.replace(/\D/g, "");
-  const clientesFiltrados = clientes.filter((cliente) => {
+  const clientesFiltrados = clientesAtivos.filter((cliente) => {
     if (!cpfBuscaNumeros) return true;
     const cpfClienteNumeros = cliente.cpf.replace(/\D/g, "");
     return cpfClienteNumeros.includes(cpfBuscaNumeros);
@@ -76,7 +79,7 @@ export default function ClientList({ clientes }) {
           </div>
         </div>
 
-        {clientes.length === 0 ? (
+        {clientes.filter((c) => c.ativo !== false).length === 0 ? (
           <div className="empty-state">
             Nenhum cliente cadastrado no sistema até o momento.
           </div>
