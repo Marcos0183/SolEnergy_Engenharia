@@ -164,3 +164,16 @@ body {
     padding: 1.5rem;
   }
 }
+
+/* Itens do menu lateral */
+.sidebar-item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.sidebar-item:focus-visible {
+  outline: 3px solid rgba(21, 128, 61, 0.3);
+  outline-offset: 2px;
+}
