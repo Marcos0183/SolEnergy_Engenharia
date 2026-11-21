@@ -6,10 +6,17 @@
 .list-card {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
-  border-top: 4px solid #15803d;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+  border-top: 5px solid #15803d;
+  border-radius: 16px;
+  padding: 2.25rem;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06),
+    0 4px 10px -2px rgba(15, 23, 42, 0.03);
+  transition: box-shadow 0.25s ease;
+}
+
+.list-card:hover {
+  box-shadow: 0 14px 30px -5px rgba(15, 23, 42, 0.09),
+    0 6px 14px -2px rgba(15, 23, 42, 0.04);
 }
 
 .list-card-header {
@@ -18,15 +25,16 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
+  margin-bottom: 1.6rem;
+  padding-bottom: 1.15rem;
   border-bottom: 1px solid #f1f5f9;
 }
 
 .list-card-title {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #14532d;
+  letter-spacing: -0.01em;
 }
 
 .list-card-subtitle {
@@ -36,20 +44,25 @@
 }
 
 .list-badge {
-  background-color: #fef9c3;
+  background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%);
   color: #854d0e;
   border: 1px solid #fde047;
   font-size: 0.78rem;
-  font-weight: 600;
-  padding: 0.25rem 0.65rem;
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
   border-radius: 999px;
+  box-shadow: 0 1px 2px rgba(234, 179, 8, 0.15);
 }
 
 .filter-container {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
-  margin-bottom: 1.5rem;
+  gap: 0.55rem;
+  margin-bottom: 1.75rem;
+  padding: 1.25rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
 }
 
 .filter-label {
@@ -66,14 +79,17 @@
 
 .filter-input {
   flex: 1;
-  padding: 0.75rem 0.9rem;
+  padding: 0.85rem 1rem;
   border: 1px solid #cbd5e1;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 0.95rem;
   color: #1e293b;
-  background-color: #f8fafc;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease,
-    background-color 0.2s ease;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-input:hover {
+  border-color: #94a3b8;
 }
 
 .filter-input::placeholder {
@@ -82,26 +98,25 @@
 
 .filter-input:focus {
   outline: none;
-  background-color: #ffffff;
   border-color: #15803d;
-  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.15);
+  box-shadow: 0 0 0 4px rgba(21, 128, 61, 0.14);
 }
 
 .btn-search-client {
   white-space: nowrap;
-  padding: 0.75rem 1.4rem;
+  padding: 0.8rem 1.5rem;
 }
 
 .btn-clear {
-  background-color: #f1f5f9;
+  background-color: #ffffff;
   color: #334155;
   font-size: 0.9rem;
   font-weight: 600;
-  padding: 0.75rem 1.25rem;
+  padding: 0.8rem 1.25rem;
   border: 1px solid #cbd5e1;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
   white-space: nowrap;
 }
 
@@ -112,22 +127,23 @@
 /* Painel de alteração e exclusão do cliente buscado/selecionado */
 .client-edit-panel {
   margin-bottom: 1.75rem;
-  padding: 1.5rem;
-  background-color: #f8fafc;
+  padding: 1.65rem;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
   border: 1px solid #cbd5e1;
-  border-left: 4px solid #15803d;
-  border-radius: 10px;
+  border-left: 5px solid #15803d;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
 }
 
 .client-edit-banner {
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  margin-bottom: 1.25rem;
-  padding: 0.9rem 1rem;
+  margin-bottom: 1.35rem;
+  padding: 0.95rem 1.1rem;
   background-color: #f0fdf4;
   border: 1px solid #bbf7d0;
-  border-radius: 8px;
+  border-radius: 10px;
   color: #14532d;
 }
 
@@ -135,9 +151,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 32px;
-  width: 32px;
-  height: 32px;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background-color: #dcfce7;
   font-size: 1rem;
@@ -150,7 +166,7 @@
 }
 
 .client-edit-actions {
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -167,7 +183,7 @@
 .btn-cancel-edit {
   padding: 0.85rem 1.4rem;
   border: 1px solid #cbd5e1;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: #ffffff;
   color: #334155;
   font-size: 0.95rem;
@@ -183,35 +199,36 @@
 .btn-delete-client {
   padding: 0.85rem 1.4rem;
   border: none;
-  border-radius: 8px;
-  background-color: #dc2626;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   color: #ffffff;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 10px rgba(220, 38, 38, 0.2);
 }
 
 .btn-delete-client:hover {
-  background-color: #b91c1c;
-  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(220, 38, 38, 0.3);
 }
 
 .btn-delete-confirm {
-  background-color: #991b1b;
+  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
 }
 
 .btn-delete-confirm:hover {
-  background-color: #7f1d1d;
-  box-shadow: 0 2px 8px rgba(153, 27, 27, 0.4);
+  background: linear-gradient(135deg, #991b1b 0%, #7f1d1d 100%);
 }
 
 .delete-confirm-box {
   margin-top: 0.5rem;
-  padding: 1.1rem 1.25rem;
+  padding: 1.15rem 1.3rem;
   background-color: #fef2f2;
   border: 1px solid #fca5a5;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .delete-confirm-text {
@@ -230,6 +247,8 @@
 .table-responsive {
   width: 100%;
   overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
 }
 
 .clients-table {
@@ -243,16 +262,20 @@
   background-color: #f8fafc;
   color: #14532d;
   font-weight: 700;
-  padding: 0.85rem 1rem;
+  padding: 0.95rem 1.1rem;
   border-bottom: 2px solid #e2e8f0;
   white-space: nowrap;
 }
 
 .clients-table td {
-  padding: 0.85rem 1rem;
+  padding: 0.95rem 1.1rem;
   border-bottom: 1px solid #f1f5f9;
   color: #1e293b;
   vertical-align: middle;
+}
+
+.clients-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .clients-table tbody tr:hover {
@@ -274,15 +297,15 @@
 }
 
 .btn-table-action {
-  padding: 0.45rem 0.85rem;
+  padding: 0.5rem 0.95rem;
   background-color: #f0fdf4;
   color: #15803d;
   border: 1px solid #86efac;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .btn-table-action:hover {
@@ -292,17 +315,17 @@
 
 .empty-state {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 2.25rem 1.25rem;
   background-color: #f8fafc;
   border: 1px dashed #cbd5e1;
-  border-radius: 8px;
+  border-radius: 12px;
   color: #475569;
   font-size: 0.95rem;
 }
 
 @media (max-width: 640px) {
   .list-card {
-    padding: 1.25rem;
+    padding: 1.35rem;
   }
 
   .filter-row {
