@@ -29,6 +29,12 @@
   color: #14532d;
 }
 
+.list-card-subtitle {
+  margin-top: 0.35rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
 .list-badge {
   background-color: #fef9c3;
   color: #854d0e;
@@ -55,6 +61,7 @@
 .filter-row {
   display: flex;
   gap: 0.75rem;
+  align-items: stretch;
 }
 
 .filter-input {
@@ -80,6 +87,11 @@
   box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.15);
 }
 
+.btn-search-client {
+  white-space: nowrap;
+  padding: 0.75rem 1.4rem;
+}
+
 .btn-clear {
   background-color: #f1f5f9;
   color: #334155;
@@ -90,10 +102,129 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  white-space: nowrap;
 }
 
 .btn-clear:hover {
   background-color: #e2e8f0;
+}
+
+/* Painel de alteração e exclusão do cliente buscado/selecionado */
+.client-edit-panel {
+  margin-bottom: 1.75rem;
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-left: 4px solid #15803d;
+  border-radius: 10px;
+}
+
+.client-edit-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+  padding: 0.9rem 1rem;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  color: #14532d;
+}
+
+.client-edit-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #dcfce7;
+  font-size: 1rem;
+}
+
+.client-edit-banner p {
+  margin-top: 0.2rem;
+  color: #166534;
+  font-size: 0.88rem;
+}
+
+.client-edit-actions {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.client-edit-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-cancel-edit {
+  padding: 0.85rem 1.4rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #334155;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-cancel-edit:hover {
+  background-color: #f1f5f9;
+}
+
+.btn-delete-client {
+  padding: 0.85rem 1.4rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #dc2626;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-delete-client:hover {
+  background-color: #b91c1c;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+}
+
+.btn-delete-confirm {
+  background-color: #991b1b;
+}
+
+.btn-delete-confirm:hover {
+  background-color: #7f1d1d;
+  box-shadow: 0 2px 8px rgba(153, 27, 27, 0.4);
+}
+
+.delete-confirm-box {
+  margin-top: 0.5rem;
+  padding: 1.1rem 1.25rem;
+  background-color: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+}
+
+.delete-confirm-text {
+  color: #7f1d1d;
+  font-size: 0.93rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.delete-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
 }
 
 .table-responsive {
@@ -128,10 +259,35 @@
   background-color: #f0fdf4;
 }
 
+.clients-table tbody tr.selected-row {
+  background-color: #dcfce7;
+}
+
 .cpf-cell {
   font-weight: 600;
   color: #15803d;
   white-space: nowrap;
+}
+
+.actions-cell {
+  white-space: nowrap;
+}
+
+.btn-table-action {
+  padding: 0.45rem 0.85rem;
+  background-color: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #86efac;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-table-action:hover {
+  background-color: #dcfce7;
+  border-color: #15803d;
 }
 
 .empty-state {
@@ -151,5 +307,17 @@
 
   .filter-row {
     flex-direction: column;
+  }
+
+  .client-edit-actions,
+  .client-edit-actions-right,
+  .delete-confirm-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-delete-client,
+  .btn-cancel-edit {
+    width: 100%;
   }
 }
