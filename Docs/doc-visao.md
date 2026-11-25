@@ -22,7 +22,7 @@ Membro     |     Competências   |
 Marcos Vinícius Dantas da Silva     | Python, C, JavaScript, HTML, CSS, Dart, Octave|
 Thiago Gomes de Oliveira    | Python, C,  Dart, JavaScript, HTML, CSS, Machine Learning|
 Thiago Alexandre Braga de Medeiro         | Python, Java, C, MySQL, JavaScript, HTML, CSS|
-Vinícius Dantas da Silva      | JavaScript, C, Dart, Python |
+Vinícius Linhares Queiroz      | JavaScript, C, Dart, Python |
 
 ## Perfis dos Usuários
 
